@@ -71,7 +71,7 @@ const WebcamCircles: React.FC = () => {
           ctx.beginPath()
 
           const h = (size * Math.sqrt(3)) / 2
-          const isUp = (x / spacing) % 2 === 0
+          const isUp = ((x / spacing) + (y / spacing)) % 2 === 0
 
           if (isUp) {
             // Triangle pointing up
