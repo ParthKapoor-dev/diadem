@@ -54,7 +54,7 @@ const WebcamCircles: React.FC = () => {
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, width, height)
 
-    const circleSize = 9
+    const squareSize = 9
     const spacing = 10
 
     for (let y = 0; y < height; y += spacing) {
@@ -64,14 +64,12 @@ const WebcamCircles: React.FC = () => {
         const g = data[i + 1]
         const b = data[i + 2]
         const brightness = (r + g + b) / 3
-        const radius = (brightness / 255) * (circleSize / 2)
+        const size = (brightness / 255) * squareSize
 
-        if (radius > 0.5) {
-          // Only draw circles with meaningful size
-          ctx.beginPath()
-          ctx.arc(x, y, radius, 0, Math.PI * 2)
+        if (size > 1) {
+          // Only draw squares with meaningful size
           ctx.fillStyle = `rgb(${r}, ${g}, ${b})`
-          ctx.fill()
+          ctx.fillRect(x - size / 2, y - size / 2, size, size)
         }
       }
     }
